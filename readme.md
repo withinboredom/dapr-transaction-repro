@@ -51,12 +51,21 @@ Sending a transaction that should fail with a bogus etag:
                 "key": "test",
                 "value": "should not be set"
             }
+        },
+        {
+            "operation": "upsert",
+            "request": {
+                "key": "5fc7ae35cb110",
+                "value": "should not be set"
+            }
         }
     ]
 }
 
 Got this result from the transaction:
-{"errorCode":"ERR_STATE_TRANSACTION","message":"ERR Error running script (call to f_83e03ec05d6a3b6fb48483accf5e594597b6058f): @user_script:1: user_script:1: failed to set key test||test"}
+{"errorCode":"ERR_STATE_TRANSACTION","message":"error while executing state transaction: ERR Error running script (call to f_83e03ec05d6a3b6fb48483accf5e594597b6058f): @user_script:1: user_script:1: failed to set key test||test"}
 But have this value stored:
+"should not be set"
+And the following key should be empty:
 "should not be set"
 ```
